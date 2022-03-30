@@ -1,1 +1,2 @@
-web: gunicorn BlogSystem.wsgi
+web: gunicorn blognificent.wsgi
+web: gunicorn accounts.wsgi
