@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        Hi {{ user.username }}! <br/>
+        {% if Post %}
+            {% for post in Post %}
+                <div class="card" id="blog-index" name="blog-index">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ post.title }}</h3>
+                        <h4 class="card-subtitle text-muted">{{ post.author }}</h4>
+                        <p><a href="{% url 'blognificent:detail' post.id %}">
+                            {{ post.text|slice:":400"}}
+                        </a></p>
+                        <p><span>{{ post.published }}</span></p>
+                    </div>
+                </div>
+                <p><a href="{% url 'logout' %}">Log Out</a></p>
+            {% endfor %}
+            {% else %}
+            <p>No blog posts</p>
+
+        {% endif %}
+    {% else %}
+        <p>You are not logged in</p>
+        <p>You will see no blogs!</p>
+        <a href="{% url 'login' %}">Log In</a>
+    {% endif %}
+{% endblock %}
