@@ -3,7 +3,7 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-        Hi {{ user.username }}! <br/>
+
         {% if Post %}
             {% for post in Post %}
                 <div class="card" id="blog-index" name="blog-index">
