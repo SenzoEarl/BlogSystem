@@ -14,7 +14,7 @@
     </small>
     <p>{{ post.text| linebreaks }}</p>
     <h3>Leave a comment:</h3>
-    <form action="{% url 'blognificent:detail' post.id %}" method="post">
+    <form action="" method="post">
         {% csrf_token %}
         <div class="form-group">
             {{ form.body }}

@@ -1,6 +1,5 @@
-from django.http import HttpResponse
-
-
+from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
 # Create your views here.
 from django.shortcuts import render
 from django.views import generic
@@ -34,15 +33,18 @@ def detail(request, pk):
     post = Post.objects.get(pk=pk)
     comments = Comment.objects.filter(post=post)
 
-    form = CommentForm()
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = Comment(
+                author=User,
                 body=form.cleaned_data['body'],
-                post=post
+                post=post,
             )
             comment.save()
+            return HttpResponseRedirect('blognificent:detail', post.id)
+    else:
+        form = CommentForm()
 
     context = {
         'comments': comments,
