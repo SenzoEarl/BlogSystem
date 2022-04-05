@@ -17,7 +17,7 @@
     <form action="" method="post">
         {% csrf_token %}
         <div class="form-group">
-            {{ form.body }}
+            {{ form.as_p}}
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
